@@ -1,0 +1,46 @@
+<h1>Saved Articles</h2>
+  <div class = "headlines">
+    {{#each headlines}}
+    <div class="card">
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+          <h5 class="card-title"><a href = "{{link}}" target="_blank">{{title}}</a></h5>
+          <div class="notes">{{note}}</div>
+        </div>
+        <div class="col-md-4">
+
+          <button class = "note" data-id = "{{id}}">Add Note</button>
+          <button class = "one" data-id = "{{id}}">Find One</button>
+          <button class = "delete-headline" data-id = "{{id}}">Delete from Saved</button>
+        </div>
+        </div>
+      </div>
+      </div>
+      {{/each}}
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a Note</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="notes"></div> -->
+          <div class="input-group">
+
+    <textarea class="form-control note-input" aria-label="With textarea"></textarea>
+      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary save-note" data-dismiss="modal">Save note</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
