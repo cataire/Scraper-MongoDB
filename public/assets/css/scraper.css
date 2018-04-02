@@ -6,3 +6,12 @@ a {
 .jumbotron {
   text-align: center;
 }
+
+.save-note {
+  display: block;
+}
+
+.note-input {
+  height: 10em;
+  width: 100%;
+}

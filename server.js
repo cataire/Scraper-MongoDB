@@ -60,7 +60,8 @@ app.get("/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save a Headline, send a message to the client
-    res.send("Scrape Complete");
+    console.log("Scrape complete");
+    res.redirect("/headlines");
   });
 });
 
@@ -113,6 +114,9 @@ app.delete("/saved", function(req, res) {
   let savedHeadlineId = req.body.id;
   console.log(savedHeadlineId);
   db.Headline.deleteOne({_id: savedHeadlineId})
+  .then(function(){
+    res.sendStatus(200);
+  })
     .catch(function(err){
       res.json(err);
     })
@@ -127,15 +131,15 @@ app.get("/headlines/:id", function(req, res) {
     .populate("note")
     .then(function(dbHeadline) {
       console.log(dbHeadline);
-      // let hbsObject = {
-      //     headlines: dbHeadline
+      // let notesObject = {
+      //     oneHeadline: dbHeadline.note
       //     };
-      // res.render("saved", hbsObject);
+      // res.render("saved", notesObject);
       res.json(dbHeadline);
     })
     .catch(function(err) {
       // If an error occurred, send it to the client
-      res.json(err);
+      res.json("Error: ", err);
     });
 });
 

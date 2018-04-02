@@ -1,24 +1,29 @@
-<h1>Saved Articles</h2>
+
   <div class = "headlines">
+    <div class="row">
+    <div class="col-md-8">
+      <h1>Saved Articles</h1>
     {{#each headlines}}
     <div class="card">
 
         <div class="card-body">
-          <div class="row">
-            <div class="col-md-8">
-          <h5 class="card-title"><a href = "{{link}}" target="_blank">{{title}}</a></h5>
-          <div class="notes">{{note}}</div>
-        </div>
-        <div class="col-md-4">
 
+
+          <h5 class="card-title"><a href = "{{link}}" target="_blank">{{title}}</a></h5>
           <button class = "note" data-id = "{{id}}">Add Note</button>
-          <button class = "one" data-id = "{{id}}">Find One</button>
+          <button class = "one" data-id = "{{id}}">Show Note</button>
           <button class = "delete-headline" data-id = "{{id}}">Delete from Saved</button>
-        </div>
-        </div>
+
+
+
       </div>
       </div>
       {{/each}}
+    </div>
+    <div class="col-md-4">
+      <div class="notes"></div>
+    </div>
+  </div>
   </div>
 
   <div class="modal" tabindex="-1" role="dialog">
@@ -31,10 +36,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <div class="notes"></div> -->
+
           <div class="input-group">
 
-    <textarea class="form-control note-input" aria-label="With textarea"></textarea>
+    <textarea class="form-control note-input note-area" aria-label="With textarea"></textarea>
       </div>
         </div>
         <div class="modal-footer">
