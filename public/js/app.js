@@ -1,69 +1,64 @@
-$(".note").on("click", function() {
-let headlineId = $(this).attr("data-id");
+
+
+// $(".note").on("click", function() {
+// let headlineId = $(this).attr("data-id");
+// $(".note-input").val("");
+// console.log("Outside Add Note ", headlineId);
+//
+// $(".save-note").attr("data-id", headlineId);
+//
+//   $(".modal").modal();
+//
+//   $(".save-note").on("click", function() {
+//     let headlineId = $(this).attr("data-id");
+//     console.log("Inside the function: ", headlineId);
+//
+//     $.ajax({
+//       method: "POST",
+//       url: "/headlines/" + headlineId,
+//       data: {
+//         body: $(".note-input").val()
+//       }
+//     })
+//       // With that done
+//       .then(function(data) {
+//         // Log the response
+//
+//         console.log("What server said after POST: ", data);
+//       });
+//
+//   })
+// })
+
+$(".save-note").on("click", function() {
+  let headlineId = $(this).attr("data-id");
+  console.log("Inside the function: ", headlineId);
 
   $.ajax({
-    method: "GET",
+    method: "POST",
     url: "/headlines/" + headlineId,
     data: {
-      // Value taken from note textarea
       body: $(".note-input").val()
     }
   })
     // With that done
     .then(function(data) {
       // Log the response
-      console.log("What server said: ", data);
+
+      console.log("What server said after POST: ", data);
     });
 
-
-  $(".modal").modal();
-
-  $(".save-note").on("click", function() {
-    console.log("Inside the function:", headlineId);
-
-    $.ajax({
-      method: "POST",
-      url: "/headlines/" + headlineId,
-      data: {
-        // Value taken from note textarea
-        body: $(".note-input").val()
-      }
-    })
-      // With that done
-      .then(function(data) {
-        // Log the response
-        console.log("What server said: ", data);
-      });
-
-  })
 })
 
-// $(".save-note").on("click", function() {
-//   let headlineId = $(this).attr("data-id");
-//
-//
-//   $.ajax({
-//     method: "POST",
-//     url: "/headlines/" + headlineId,
-//     data: {
-//       // Value taken from note textarea
-//       body: $(".note-input").val()
-//     }
-//   })
-//     // With that done
-//     .then(function(data) {
-//       // Log the response
-//       console.log("What server said: ", data);
-//     });
-//
-// })
+
 
 
 $(".one").on("click", function() {
   // Empty the notes from the note section
   $(".notes").empty();
   // Save the id from the p tag
-  var headlineId = $(this).attr("data-id");
+  let headlineId = $(this).attr("data-id");
+  console.log("Inside One: " , headlineId);
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
@@ -72,15 +67,15 @@ $(".one").on("click", function() {
     // With that done, add the note information to the page
     .then(function(data) {
       console.log(data);
-      // The title of the article
-      $(".notes").append("<h2>Saved Note</h2>");
-      // A textarea to add a new note body
-      $(".notes").append("<p class='note-area' name='body'></p>");
-      // If there's a note in the article
+        $(".notes").append(`<h1>Saved Note</h1>`);
+        $(".notes").append(`<textarea class="note-input"></textarea>`);
+        $(".notes").append(`<button data-id="${data._id}">Save Note</button>`);
+
+
       if (data.note) {
         console.log("There is note data", data.note.body);
-        // Place the body of the note in the body textarea
-        $(".note-area").text(data.note.body);
+      
+        $(".note-input").val(data.note.body);
       }
     });
 });
@@ -102,24 +97,6 @@ $(".delete-headline").on("click", function() {
 })
 
 
-// $(".one").on("click", function() {
-//   let headlineId = $(this).attr("data-id");
-//   console.log(headlineId);
-//
-//
-// $.ajax({
-//   method: "GET",
-//   url: "/headlines/" + headlineId,
-//   data: {
-//     id: headlineId
-//   }
-// })
-//   // With that done
-//   .then(function(data) {
-//     // Log the response
-//     console.log(data);
-//   });
-// })
 
 $(".save-headline").on("click", function() {
   let headlineId = $(this).attr("data-id");
@@ -137,6 +114,7 @@ $.ajax({
   .done(function(data) {
     // Log the response
     console.log(data);
+    alert("Article saved. You can see it in Saved Articles");
     location.reload();
   });
 })

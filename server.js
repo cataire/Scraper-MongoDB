@@ -6,7 +6,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("./models");
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -29,12 +29,12 @@ mongoose.connect("mongodb://localhost/scraperdb");
 
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("https://www.theonion.com/c/news-in-brief").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("article div div h1").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
@@ -131,10 +131,7 @@ app.get("/headlines/:id", function(req, res) {
     .populate("note")
     .then(function(dbHeadline) {
       console.log(dbHeadline);
-      // let notesObject = {
-      //     oneHeadline: dbHeadline.note
-      //     };
-      // res.render("saved", notesObject);
+
       res.json(dbHeadline);
     })
     .catch(function(err) {
