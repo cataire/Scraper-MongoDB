@@ -23,10 +23,7 @@ var HeadlineSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Note"
   },
-  // noteBody: {
-  //   type: String,
-  //   ref: "Note"
-  // },
+  
   saved: {
     type: Boolean,
     required: false

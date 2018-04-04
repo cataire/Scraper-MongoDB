@@ -5,6 +5,11 @@ a {
 
 .jumbotron {
   text-align: center;
+  /* background-image: url("https://i.kinja-img.com/gawker-media/image/upload/s--M2YBZqBy--/c_scale,fl_progressive,q_80,w_800/ccwa4jkpnbfwuffd7hfa.jpg") no-repeat; */
+}
+
+.main {
+  background-image: url("https://i.kinja-img.com/gawker-media/image/upload/s--M2YBZqBy--/c_scale,fl_progressive,q_80,w_800/ccwa4jkpnbfwuffd7hfa.jpg") no-repeat;
 }
 
 .save-note {
@@ -16,6 +21,6 @@ a {
   width: 100%;
 }
 
-.onion-image {
-  height: 10em;
+.btn-dark {
+  color: white;
 }

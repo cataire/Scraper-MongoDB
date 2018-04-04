@@ -1,54 +1,55 @@
 
 
-// $(".note").on("click", function() {
-// let headlineId = $(this).attr("data-id");
-// $(".note-input").val("");
-// console.log("Outside Add Note ", headlineId);
-//
-// $(".save-note").attr("data-id", headlineId);
-//
-//   $(".modal").modal();
-//
-//   $(".save-note").on("click", function() {
-//     let headlineId = $(this).attr("data-id");
-//     console.log("Inside the function: ", headlineId);
-//
-//     $.ajax({
-//       method: "POST",
-//       url: "/headlines/" + headlineId,
-//       data: {
-//         body: $(".note-input").val()
-//       }
-//     })
-//       // With that done
-//       .then(function(data) {
-//         // Log the response
-//
-//         console.log("What server said after POST: ", data);
-//       });
-//
-//   })
-// })
+$(".note").on("click", function() {
+let headlineId = $(this).attr("data-id");
+$(".note-input").val("");
+console.log("Outside Add Note ", headlineId);
 
-$(".save-note").on("click", function() {
-  let headlineId = $(this).attr("data-id");
-  console.log("Inside the function: ", headlineId);
+$(".save-note").attr("data-id", headlineId);
 
-  $.ajax({
-    method: "POST",
-    url: "/headlines/" + headlineId,
-    data: {
-      body: $(".note-input").val()
-    }
+  $(".modal").modal();
+
+  $(".save-note").on("click", function() {
+    let headlineId = $(this).attr("data-id");
+    console.log("Inside the function: ", headlineId);
+    console.log($(".note-input").val());
+
+    $.ajax({
+      method: "POST",
+      url: "/headlines/" + headlineId,
+      data: {
+        body: $(".note-input").val()
+      }
+    })
+      // With that done
+      .then(function(data) {
+        // Log the response
+
+        console.log("What server said after POST: ", data);
+      });
+
   })
-    // With that done
-    .then(function(data) {
-      // Log the response
-
-      console.log("What server said after POST: ", data);
-    });
-
 })
+
+// $(".save-note").on("click", function() {
+//   let headlineId = $(this).attr("data-id");
+//   console.log("Inside the function: ", headlineId);
+//
+//   $.ajax({
+//     method: "POST",
+//     url: "/headlines/" + headlineId,
+//     data: {
+//       body: $(".note-input").val()
+//     }
+//   })
+//     // With that done
+//     .then(function(data) {
+//       // Log the response
+//
+//       console.log("What server said after POST: ", data);
+//     });
+//
+// })
 
 
 
@@ -66,7 +67,7 @@ $(".one").on("click", function() {
   })
     // With that done, add the note information to the page
     .then(function(data) {
-      console.log(data);
+      console.log("LOOOOOK! : ", data);
         $(".notes").append(`<h1>Saved Note</h1>`);
         $(".notes").append(`<textarea class="note-input"></textarea>`);
         $(".notes").append(`<button data-id="${data._id}">Save Note</button>`);
@@ -74,7 +75,7 @@ $(".one").on("click", function() {
 
       if (data.note) {
         console.log("There is note data", data.note.body);
-      
+
         $(".note-input").val(data.note.body);
       }
     });
